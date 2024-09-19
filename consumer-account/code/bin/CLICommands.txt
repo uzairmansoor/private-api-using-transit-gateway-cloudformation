@@ -1,0 +1,8 @@
+aws s3 sync Command:
+
+aws s3 sync . s3://tgw-consumer-blog-app-dev-us-east-1-007756798683/code/
+
+#Root Stack Create Dev
+aws cloudformation create-stack --stack-name consumer-dev-root-us-east-1 --template-body file://consumer-account-root.yml --parameters ParameterKey=project,ParameterValue="tgwconsumer" ParameterKey=env,ParameterValue="dev" ParameterKey=app,ParameterValue="app" --region us-east-1
+#S3 Update Dev
+aws cloudformation update-stack --stack-name consumer-dev-root-us-east-1 --template-body file://consumer-account-root.yml --parameters ParameterKey=project,ParameterValue="tgwconsumer" ParameterKey=env,ParameterValue="dev" ParameterKey=app,ParameterValue="app" --region us-east-1

@@ -1,0 +1,8 @@
+aws s3 sync Command:
+
+aws s3 sync . s3://tgw-shared-blog-app-dev-us-east-1-576594342627/code/
+
+#Root Stack Create Dev
+aws cloudformation create-stack --stack-name shared-dev-root-us-east-1 --template-body file://shared-account-root.yml --parameters ParameterKey=project,ParameterValue="tgwshared" ParameterKey=env,ParameterValue="dev" ParameterKey=app,ParameterValue="app" --region us-east-1
+#S3 Update Dev
+aws cloudformation update-stack --stack-name shared-dev-root-us-east-1 --template-body file://shared-account-root.yml --parameters ParameterKey=project,ParameterValue="tgwshared" ParameterKey=env,ParameterValue="dev" ParameterKey=app,ParameterValue="app" --region us-east-1
